@@ -1,0 +1,21 @@
+/* antes de deploy dev ou de promover a produção */
+subir um novo cadastro para a base de dados
+subir um novo arquivo de autorização
+tentar subir um arquivo diferendo do especificado
+subir arquivos com caracteres permitidos
+subir arquivo com caracteres não permitidos
+deletar um usuario
+enviar um atestado
+aprovar um atestado
+reprovar um atestado
+verificar se as notificações estão chegando
+criar um usuario pelo aplicativo
+visualizar um atestado 
+visuarlizar todos os usuario
+tentar adcionar um usuario pelo sistema sem estar na lista de autorizados
+tentar adcionar um usuairo pelo app sem estar na lista de autorizados
+tentar login com usuairo não autorizados
+tentar login com senha incorreta
+tentar login corretamente
+tentar criar usuario com senha ruim
+
