@@ -62,8 +62,8 @@ export async function POST(req: NextRequest) {
 /* curl -X POST https://api.telegram.org/8134191465:AAEE8br6VOsGEgUCo_1Qu8MWzt9B-urKZQE/setWebhook \
   -d "url=https://meu-bot-telegram.vercel.app/api/telegram/webhook" */
 
-
+/* 
   curl -X POST https://api.telegram.org/bot8134191465:AAEE8br6VOsGEgUCo_1Qu8MWzt9B-urKZQE/setWebhook \
   -d "url=https://nolevel-9si8gtg7u-hikra-products.vercel.app/api/telegram"
 
-  curl -X GET "https://api.telegram.org/bot8134191465:AAEE8br6VOsGEgUCo_1Qu8MWzt9B-urKZQE/getWebhookInfo"
+  curl -X GET "https://api.telegram.org/bot8134191465:AAEE8br6VOsGEgUCo_1Qu8MWzt9B-urKZQE/getWebhookInfo" */
