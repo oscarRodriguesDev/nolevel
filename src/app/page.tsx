@@ -16,6 +16,8 @@ import "aos/dist/aos.css";
 import Typewriter from "typewriter-effect";
 import { cn } from "@/utils/utils";
 import { usePathname } from "next/navigation";
+import ChatWidget from "@/components/chat";
+
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -101,7 +103,7 @@ export default function Home() {
       </section>
 
       {/* Section 2 Hero*/}
-      <section  className="mx-[300px] bg-white py-12">
+      <section className="mx-[300px] bg-white py-12">
         <div className="flex-col">
           <div className="flex text-[12px] md:text-[18px] justify-center md:text-end md:justify-end mt-[20px] md:mr-[25px] lg:mr-[60px] lg:text-[24px] font-bold">
             <i className="z-40">
@@ -128,7 +130,7 @@ export default function Home() {
                     .pauseFor(1000)
                     .deleteAll()
                     .typeString(
-                      "O Sender encurta caminhos, otimiza o tempo de resposta e acelera o seu sucesso."
+                      "O No-Level encurta caminhos, otimiza o tempo de resposta e acelera o seu sucesso."
                     )
                     .pauseFor(1000)
                     .deleteAll()
@@ -142,8 +144,8 @@ export default function Home() {
               <div className="mt-17">
                 <Link href="/" className="cursor-pointer mt-13 text-lg">
                   <h1 className="flex items-center text-4xl">
-                    <span className="font-bold">SEN</span>
-                    <span className="text-purple-600 font-bold">DER</span>
+                    <span className="font-bold">No-</span>
+                    <span className="text-purple-600 font-bold">Level</span>
                   </h1>
                 </Link>
               </div>
@@ -184,20 +186,20 @@ export default function Home() {
       <section id='about' className="mx-[300px] bg-white py-12">
         <div className="flex flex-col md:flex-row mx-4 lg:mx-8 xl:mx-16 2xl:mx-32 my-4 md:my-8 gap-x-8 md:gap-x-16">
           <div className="flex my-auto z-50">
-            <h2 className="text-6xl font-bold text-purple-700">Sender</h2>
+            <h2 className="text-6xl font-bold text-purple-700">No-Level</h2>
           </div>
 
           <div className="flex flex-col mt-4 md:my-auto z-50">
             <div className="flex flex-col text-lg md:text-2xl lg:text-3xl leading-normal clash-display">
               <h2 className="font-bold text-center md:text-left">
-                Seja Bem vindo ao Sender
+                Seja Bem vindo ao No-Level
               </h2>
             </div>
 
             <div className="mt-4 leading-loose max-w-2xl text-sm md:text-base lg:text-lg text-center md:text-left">
-              O Sender é um sistema inovador que conecta todos os colaboradores
+              O No-Level é um sistema inovador que conecta todos os colaboradores
               de sua empresa, otimizando o tempo de resposta a chamados e
-              solicitações. Com o Sender, qualquer barreira na comunicação entre
+              solicitações. Com o No-Level, qualquer barreira na comunicação entre
               colaboradores e o setor administrativo é eliminada, permitindo um
               fluxo de informações eficiente e ágil.
             </div>
@@ -275,12 +277,12 @@ export default function Home() {
 
           <div className="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-6 flex flex-col justify-between">
             <h2 className="text-3xl font-bold text-purple-700 mb-4">
-              Sender Admin Eficiência e Rapidez
+              No-Level Admin Eficiência e Rapidez
             </h2>
             <div className="text-gray-700">
               <div className="mb-4">
                 <span className="font-semibold">
-                  O painel Sender Admin&nbsp;
+                  O painel No-Level Admin&nbsp;
                 </span>{" "}
                 é projetado para que os responsáveis pela administração possam
                 gerenciar todos os chamados e solicitações de maneira rápida e
@@ -449,6 +451,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* chat para interagirn com chat bot */}
+
+      <section>
+       <ChatWidget/>
+      </section>
+
+
 
       {/* section 7 footer */}
       <section className="bg-purple-800 py-12">
@@ -459,15 +468,15 @@ export default function Home() {
               <div className="text-white">
                 <h2 className="text-4xl md:text-5xl font-bold mb-4">
                   <Link href="/">
-                    <span>Sen</span>
-                    <span className="text-pink-500">Der</span>
+                    <span>No-</span>
+                    <span className="text-pink-500">Level</span>
                   </Link>
                 </h2>
                 <p className="text-gray-300">
-                O Sender transforma a comunicação dentro da sua empresa, otimizando processos e 
-                conectando colaboradores de maneira rápida e eficiente. Com o Sender, cada interação é
-                 mais clara, ágil e eficaz. Descubra como nosso produto pode levar sua organização a novos 
-                 patamares de excelência.
+                  O No-Level transforma a comunicação dentro da sua empresa, otimizando processos e
+                  conectando colaboradores de maneira rápida e eficiente. Com o No-Level, cada interação é
+                  mais clara, ágil e eficaz. Descubra como nosso produto pode levar sua organização a novos
+                  patamares de excelência.
                 </p>
               </div>
               <div className="mt-6">
@@ -535,7 +544,7 @@ export default function Home() {
                 <div className="flex items-center mt-4 space-x-4">
                   <MapPin className="h-6 w-6" />
                   <span className="text-gray-300">
-                Civit II n° 27 Serra ES
+                    Civit II n° 27 Serra ES
                   </span>
                 </div>
               </div>
@@ -544,10 +553,12 @@ export default function Home() {
 
           {/* Direitos Reservados */}
           <div className="flex justify-center items-center mt-8 text-white text-sm md:text-base lg:text-lg">
-            Todos os direitos reservados. &copy; sender.com.br
+            Todos os direitos reservados. &copy; No-Level.com.br
           </div>
         </div>
       </section>
+
+
     </div>
   );
 }

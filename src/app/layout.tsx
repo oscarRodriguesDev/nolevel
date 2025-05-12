@@ -7,8 +7,8 @@ import { AuthProvider } from "./(auth)/auth/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
-  title: "Sender Admin",
-  description: "Landing Page Sender",
+  title: "No-Level Admn",
+  description: "Landing Page No-Level",
 };
 
 export default function RootLayout({
