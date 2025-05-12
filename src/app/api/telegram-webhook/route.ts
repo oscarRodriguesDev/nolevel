@@ -56,3 +56,9 @@ export async function POST(req: NextRequest) {
 
   return new Response('Mensagem processada', { status: 200 });
 }
+
+
+//rode:
+
+/* curl -X POST https://api.telegram.org/8134191465:AAEE8br6VOsGEgUCo_1Qu8MWzt9B-urKZQE/setWebhook \
+  -d "url=https://meu-bot-telegram.vercel.app/api/telegram/webhook" */
