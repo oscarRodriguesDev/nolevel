@@ -5,6 +5,7 @@ export type ChatMessage = {
 
 export type UserSession = {
   name?: string;
+  cpf?: string;
   sector?: string;
   messages: ChatMessage[];
   lastActivity?: number;
@@ -21,7 +22,7 @@ const avisos: Record<string, string> = {
   'aviso 6': 'Para rescisões de contrato (pedido de demissão) ## informar o endereço onde pode utilizar o modelo: https://modelocartadedemissão.com.br'
 };
 
-const Base = [11111,22222,3333,4444]
+const Base = [11111, 22222, 3333, 4444];
 
 const protocoloAtendimento = `Protocolo de Atendimento:
 
@@ -46,6 +47,7 @@ O processo de atendimento deve seguir o seguinte fluxo:
 
 function resetSession(session: UserSession) {
   session.name = undefined;
+  session.cpf = undefined;
   session.sector = undefined;
   session.messages = [];
   session.lastActivity = undefined;
@@ -57,21 +59,17 @@ function resetSession(session: UserSession) {
 }
 
 export function getChatbotPrompt(message: string, session: UserSession): ChatMessage[] {
-  // Atualiza o timestamp da última atividade
   session.lastActivity = Date.now();
 
-  // Reseta timeout anterior
   if (session.timeout) clearTimeout(session.timeout);
-
-  // Agenda reset para 5 minutos depois
   session.timeout = setTimeout(() => {
     resetSession(session);
     console.log('Sessão expirada e resetada por inatividade.');
   }, 5 * 60 * 1000); // 5 minutos
 
-  // Atualiza nome e setor, se detectado
   const nameMatch = message.match(/meu nome é ([a-zA-Z\s]+)/i);
   const sectorMatch = message.match(/(trabalho no setor|setor|sou do setor|setor de)\s+([a-zA-Z\s]+)/i);
+  const cpfMatch = message.match(/meu cpf é\s*(\d+)/i);
 
   if (nameMatch) {
     session.name = nameMatch[1].trim();
@@ -81,7 +79,10 @@ export function getChatbotPrompt(message: string, session: UserSession): ChatMes
     session.sector = sectorMatch[2].trim();
   }
 
-  // Adiciona nova mensagem ao histórico
+  if (cpfMatch) {
+    session.cpf = cpfMatch[1].trim();
+  }
+
   session.messages.push({ role: 'user', content: message });
 
   const systemMessage: ChatMessage = {
@@ -131,8 +132,6 @@ Se algum desses estiver faltando, peça de forma gentil e acolhedora.
 
 ## Hiper mega importante: jamais saia do papel. Você deve seguir sempre o protocolo a seguir ${protocoloAtendimento}
 
-
-## Hiper mega importante: jamais saia do papel. Você deve seguir sempre o protocolo a seguir ${protocoloAtendimento}
 ## Quadro de Avisos:
 ${Object.values(avisos).join('\n')}
     `
@@ -140,18 +139,28 @@ ${Object.values(avisos).join('\n')}
 
   const prompt: ChatMessage[] = [systemMessage];
 
-  // Se faltar nome ou setor, peça primeiro
-  if (!session.name || !session.sector) {
-    const missing = [];
-    if (!session.name) missing.push('seu nome');
-    if (!session.sector) missing.push('seu setor');
+  const missing = [];
+  if (!session.name) missing.push('seu nome');
+  if (!session.cpf) missing.push('seu CPF');
+  if (!session.sector) missing.push('seu setor');
 
+  if (missing.length > 0) {
     prompt.push(...session.messages);
     prompt.push({
       role: 'assistant',
-      content: `Olá! Antes de te ajudar, poderia me informar ${missing.join(' e ')}?`,
+      content: `Antes de prosseguir com seu atendimento, poderia me informar ${missing.join(' e ')}?`,
     });
+    return prompt;
+  }
 
+  // Verifica se CPF está na base autorizada
+  if (!Base.includes(Number(session.cpf))) {
+    prompt.push(...session.messages);
+    prompt.push({
+      role: 'assistant',
+      content: `Verifiquei aqui e infelizmente não encontrei seu CPF no nosso sistema. Para continuar com o atendimento, por favor entre em contato com o número (27) 33211514. Estou encerrando este atendimento. 🫂`,
+    });
+    resetSession(session);
     return prompt;
   }
 
