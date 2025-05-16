@@ -19,7 +19,10 @@ import { usePathname } from "next/navigation";
 import ChatWidget from "@/components/chat";
 
 
+
 export default function Home() {
+
+
   const [isMounted, setIsMounted] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
