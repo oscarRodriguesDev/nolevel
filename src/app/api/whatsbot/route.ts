@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { OpenAI } from 'openai';
 import { getChatbotPrompt,UserSession } from '../../../utils/botWhats'
 
+export const runtime = 'edge';
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
 });
@@ -47,7 +49,7 @@ export async function POST(req: Request) {
     const response = completion.choices[0].message.content;
     // Simula o tempo de resposta humano
     await esperarComoHumano();
-    
+
     session.messages.push({ role: 'system', content:response });
 
     return NextResponse.json({ response });
