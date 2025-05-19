@@ -25,7 +25,7 @@ function delay(ms: number) {
 }
 
 async function esperarComoHumano() {
-  const delayMs = Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000;
+   const delayMs = Math.floor(Math.random()*10000); // Tempo de espera entre 0 e 10 segundos
   await delay(delayMs);
 }
 
