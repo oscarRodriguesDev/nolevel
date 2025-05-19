@@ -17,6 +17,17 @@ function getSession(sessionId: string): UserSession {
   return sessions.get(sessionId)!;
 }
 
+//função para controle o delay de resposta para simular o tempo de resposta humano randomico
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function esperarComoHumano() {
+  const delayMs = Math.floor(Math.random() * (20000 - 5000 + 1)) + 5000;
+  await delay(delayMs);
+}
+
+
 export async function POST(req: Request) {
   try {
     const { message, sessionId } = await req.json();
@@ -34,7 +45,9 @@ export async function POST(req: Request) {
     });
 
     const response = completion.choices[0].message.content;
-
+    // Simula o tempo de resposta humano
+    await esperarComoHumano();
+    
     session.messages.push({ role: 'system', content:response });
 
     return NextResponse.json({ response });
