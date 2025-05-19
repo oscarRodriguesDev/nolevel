@@ -38,10 +38,10 @@ export async function POST(req: Request) {
     const messages = getChatbotPrompt(message, session);
 
     // Guarda no histórico (exceto se for prompt de solicitação de nome/setor)
-    session.messages.push({ role: 'user', content: message });
+    session.messages.push({ role: 'assistant', content: message });
 
     const completion = await openai.chat.completions.create({
-      model: 'gpt-4',
+      model: 'gpt-3.5-turbo',
       temperature: 0.7, // Mais "humano"
       messages,
     });
