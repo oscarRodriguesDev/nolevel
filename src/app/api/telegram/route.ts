@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getChatbotPrompt,ChatMessage, UserSession } from '@/utils/bot-TLG';
+import { getChatbotPrompt,ChatMessage, UserSession } from '@/utils/bot';
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
 const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
