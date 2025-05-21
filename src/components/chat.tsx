@@ -57,7 +57,7 @@ export default function ChatWidget() {
         };
 
         // Após o tempo aleatório, envia a mensagem
-        setMessages((prev) => [...prev, welcomeMessage]);
+        setMessages((prev) => [...prev]);
         setFirstInteraction(true); // Marca que a primeira interação ocorreu
         setLoading(false);
       }, randomDelay); // Atraso antes de enviar a saudação

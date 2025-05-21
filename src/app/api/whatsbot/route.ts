@@ -1,7 +1,7 @@
 // app/api/chat/route.ts
 import { NextResponse } from 'next/server';
 import { OpenAI } from 'openai';
-import { getChatbotPrompt,UserSession } from '../../../utils/bot'
+import { getChatbotPrompt,UserSession } from '../../../utils/botWhats'
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY!,
